@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Polash</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* সব নিচে আনবে */
+            align-items: center;
+            padding-bottom: 50px; /* নিচে কিছু স্পেস রাখার জন্য */
+        }
+        
+        #giftBox {
+            font-size: 80px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        
+        .balloon {
+            font-size: 50px;
+            position: absolute;
+            bottom: 0;
+            opacity: 0.8;
+            animation: rise 5s linear forwards;
+        }
+
+        @keyframes rise {
+            from { transform: translateY(0); opacity: 0.8; }
+            to { transform: translateY(-120vh); opacity: 0; }
+        }
+
+        #cakeContainer {
+            display: none;
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #cake {
+            width: 250px;
+            border-radius: 10px;
+        }
+
+        #candle {
+            width: 20px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 50%;
+            top: -90px;
+            transform: translateX(-50%);
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #flame {
+            width: 15px;
+            height: 30px;
+            background: orange;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            display: block;
+        }
+
+        #message {
+            font-size: 40px;
+            display: none;
+            color: yellow;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="giftBox">🎁</div>
+    
+    <div id="balloonContainer"></div>
+
+    <div id="cakeContainer">
+        <img id="cake" src="YOUR_IMAGE_URL_HERE" alt="Birthday Cake">
+        <div id="candle">
+            <div id="flame"></div>
+        </div>
+    </div>
+
+    <h2 id="message">🎉 Happy Birthday Polash! 🎉</h2>
+
+    <script>
+        function createBalloons() {
+            let balloonContainer = document.getElementById("balloonContainer");
+
+            for (let i = 0; i < 20; i++) {
+                let balloon = document.createElement("div");
+                balloon.classList.add("balloon");
+                balloon.innerHTML = "🎈";
+                balloon.style.left = Math.random() * 100 + "vw";  
+                balloon.style.animationDuration = (3 + Math.random() * 2) + "s";
+                balloonContainer.appendChild(balloon);
+            }
+        }
+
+        document.getElementById("giftBox").addEventListener("click", function() {
+            document.getElementById("giftBox").style.display = "none";
+            createBalloons();
+            document.getElementById("cakeContainer").style.display = "block"; 
+        });
+
+        document.getElementById("candle").addEventListener("click", function() {
+            document.getElementById("flame").style.display = "none"; 
+            document.getElementById("cakeContainer").style.display = "none"; 
+            document.getElementById("balloonContainer").style.display = "none"; 
+            document.getElementById("message").style.display = "block"; 
+        });
+    </script>
+
+</body>
+</html>
